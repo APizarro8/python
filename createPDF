@@ -1,0 +1,44 @@
+# -*- coding: utf-8 -*-
+##################################################################################################################
+# Author: Alicia Pizarro
+# Script: create a pdf documents
+##################################################################################################################
+
+# import modules
+import time
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import A4
+
+# output
+outputInfo = 'XXX'
+
+
+def createPDF(outputInfo):
+    """
+    This function create a pdf document.
+    -------------------------------------------------------------------
+    Parameters of function
+    --------------------------------------------------------------------
+    :param outputInfo: pdfto create.
+    --------------------------------------------------------------------
+    :return: a document pdf with de text and date.
+    """
+
+    outputInfo = canvas.Canvas(outputInfo, pagesize=A4)
+    outputInfo.setFont('Helvetica-Bold', 10)
+    outputInfo.drawString(400, 800, "Date and time: %s " % time.strftime("%c"))
+    outputInfo.setFont('Helvetica-Bold', 14)
+    outputInfo.drawString(80, 700, "text")
+    outputInfo.setFont("Helvetica", 20)
+    outputInfo.drawString(220, 740, "title")
+    outputInfo.setFont('Helvetica-Bold', 10)
+    outputInfo.drawString(80, 660, 'text:')
+    outputInfo.drawString(80, 620, 'text')
+    outputInfo.save()
+
+    print('-----------------------------------------')
+    print("PDF document has been created.")
+    print('-----------------------------------------')
+
+
+createPDF(outputInfo)
