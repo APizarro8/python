@@ -1,0 +1,42 @@
+# -*- coding: utf-8 -*-
+##################################################################################################################
+# Author: Alicia Pizarro
+# Script: Mergue pdf documents
+##################################################################################################################
+
+# import modules
+from PyPDF2 import PdfFileMerger
+
+# inputs
+doc1 = 'XXX'
+doc2 = 'XXX'
+doc3 = 'XXX'
+
+# output
+docFinal = 'XXX'
+
+
+def merguePDF(doc1, doc2, doc3):
+    """
+    This function merge the pdfs in a unique pdf.
+    --------------------------------------------------------------------
+    Parameters of function
+    --------------------------------------------------------------------
+    :param doc1: X doc
+    :param doc2: X doc
+    :param doc3: X doc
+    --------------------------------------------------------------------
+    :return: a single pdf document with all the information.
+    """
+    pdfs = [doc1, doc2, doc3]  # inputs pdf
+    finalPDF = docFinal  # single pdf
+    fusionador = PdfFileMerger()  # union function
+
+    for pdf in pdfs:
+        fusionador.append(open(pdf, 'rb'))  # open pdf
+
+    with open(finalPDF, 'wb') as salida:  # write pdf
+        fusionador.write(salida)
+
+
+merguePDF(doc1, doc2, doc3)
