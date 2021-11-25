@@ -1,0 +1,32 @@
+# -*- coding: utf-8 -*-
+###########################################################################################################################
+# Autor: Alicia Pizarro
+# Script: delete documents, folders and dirs.
+##############################################################################################################################
+
+#--Import module
+import os
+import shutil
+
+# Directory to file/folder to delete.
+path = 'XXXX'
+
+def removeData(path):
+    """
+    This global function delete the download
+    folders, the directory and its content.
+    -------------------------------------------------------------------
+    Parameters of function
+    -------------------------------------------------------------------
+    :param path: directory to file/folder to delete.
+    -------------------------------------------------------------------
+    :return: file/folder delete.
+    """
+    if os.path.isfile(path):
+        os.remove(path)
+    elif os.path.isdir(path):
+        shutil.rmtree(path)
+    else:
+        raise ValueError("The files {} are not in the directory".format(path))
+
+removeData(path)
