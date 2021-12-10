@@ -1,0 +1,37 @@
+# -*- coding: utf-8 -*-
+#######################################################################################################################
+# Autor: Alicia Pizarro
+#######################################################################################################################
+
+# import modules
+import os
+
+########################################################################################################################
+# -- Time and date
+########################################################################################################################
+import time
+from datetime import datetime
+
+x = datetime.now()
+time.strftime("%c")
+
+fechaActual = (str(x.day) + '-' + str(x.month) + '-' + str(x.year))
+print('Today is %d-%d-%d' % (x.day, x.month, x.year))
+
+file1 = 'diretoryOFfile'
+file2 = 'diretoryOFfile'
+file3 = 'diretoryOFfile'
+file4 = 'diretoryOFfile'
+file5 = 'diretoryOFfile'
+
+newName1 = 'diretoryOFnewFile_%s.' % fechaActual
+newName2 = 'diretoryOFnewFile_%s.' % fechaActual
+newName3 = 'diretoryOFnewFile_%s.' % fechaActual
+newName4 = 'diretoryOFnewFile_%s.' % fechaActual
+newName5 = 'diretoryOFnewFile_%s.' % fechaActual
+
+os.rename(file1, newName1)
+os.rename(file2, newName2)
+os.rename(file3, newName3)
+os.rename(file4, newName4)
+os.rename(file5, newName5)
