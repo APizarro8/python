@@ -1,0 +1,41 @@
+#################################################################################################
+
+# ---Import modules
+from time import sleep
+from subprocess import call
+import datetime
+
+# script to execute
+script1 = '/home/alicia/COMPLUTIG/indra/00_distance.py'
+
+# Time parameter
+timeExecution = '13:40'
+
+def executor(script1, timeExecution):
+    """
+    Execute a script at a specific time every 24 hours.
+    -------------------------------------------------------------------
+    Parameters of function
+    -------------------------------------------------------------------
+    :param script: script to execute.
+    param timeExecution: time to execute every 24h.
+    -------------------------------------------------------------------
+    :return: the results of the executed scripts.
+    
+    """
+
+    # -1-Setting the script execution time
+    execution_time = timeExecution  # choose the time
+    # -2-Creation of an infinity loop that operates every 24 hours
+    while True:  # loop with boolean data
+        current_time = datetime.datetime.now().strftime("%H:%M")
+        if current_time != execution_time:  # It is conditioned with the current time
+            sleep(30)  # Checks every 30 seconds to see if the current time matches
+        else:
+            call(['python', script1])  # Call to the script to execute
+            sleep(1380)  # Sleeps the loop for 23 hours (runs in the background)
+
+            print("The desired script has been executed.")
+
+
+executor(script1, timeExecution)
