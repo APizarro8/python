@@ -1,0 +1,28 @@
+# -*- coding: utf-8 -*-
+##################################################################################################################
+# Author: Alicia Pizarro
+# Script: create a pdf documents
+##################################################################################################################
+
+# -- inputs
+from reportlab.pdfgen import canvas
+
+#outputs
+outputTable = '......pdf'
+# ----------------------------------------------------------------------
+
+
+def createMultiPage():
+    """
+    Create a multi-page document
+    """
+    c = canvas.Canvas(outputTable)
+
+    for i in range(5):
+        page_num = c.getPageNumber()
+        text = "Page %s" % page_num
+        c.drawString(500, 50, text)
+        c.showPage()
+    c.save()
+
+createMultiPage()
