@@ -1,0 +1,41 @@
+def selectDates(downloadPath, date1, date2, outputFolder):
+    """
+    This function select the files with a range of dates and make a mergue 
+    with the selection.
+    -------------------------------------------------------------------
+    Parameters of function
+    -------------------------------------------------------------------
+    :param downloadPath: image store directory.
+    :param date1: final date.
+    :param date2: initial date.
+    :param outputFolder: output folder.
+    -------------------------------------------------------------------
+    :return: the merge with the HS in the range of dates.
+    """
+    dateList = [(date1 + timedelta(days=d)).strftime("%d-%m-%Y")
+                    for d in range((date2 - date1).days + 1)]
+
+    list = ", ".join(dateList)
+    print(", ".join(dateList))
+
+    dateExist = []
+    files = os.listdir(downloadPath)
+
+    for list in dateList:
+        pattern = 'nombreArchivo.*' % list
+        pattern2 = 'nombreArchivo_%s.shp' % list
+        print(pattern)
+        print(pattern2)
+        for name in files:
+            if glob.glob(downloadPath+pattern):
+                shp = geopandas.GeoDataFrame.from_file(downloadPath+pattern2)
+                dateExist.append(shp)
+                #print(dateExist)
+                break
+
+    mergePoints = geopandas.GeoDataFrame(pd.concat(dateExist))
+    mergePoints.set_crs(4326, inplace=True)
+    mergePoints.to_file(outputFolder + 'nombreArchivo_%s.shp' % (date1, date2))
+    print("Mergue shapefiles is OK.")
+
+    return mergePoints
