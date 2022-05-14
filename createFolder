@@ -1,0 +1,20 @@
+def createFolder(outputFolderRemove):
+    """
+    This function create a remove folder.
+    -------------------------------------------------------------------
+    Input parameters:
+        :param outputFolderRemove: the folder.
+
+    Output of the function:
+        :return: the folder remove.
+    """
+    try:
+        os.mkdir(outputFolderRemove)
+        print("The folder has been created.")
+    except OSError as e:
+        if e.errno != errno.EEXIST:
+            raise
+        print("The folder already exists.")
+
+    return outputFolderRemove
+
